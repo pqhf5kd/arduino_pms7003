@@ -8,10 +8,10 @@
 #include <ESP8266mDNS.h>
 #include <arduino_homekit_server.h>
 
-#include <U8g2lib.h>
+//#include <U8g2lib.h>
 
 //U8g2 Contructor
-U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ 16, /* clock=*/ 5, /* data=*/ 4);
+//U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ 16, /* clock=*/ 5, /* data=*/ 4);
 // Alternative board version. Uncomment if above doesn't work.
 // U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ 4, /* clock=*/ 14, /* data=*/ 2);
 
@@ -66,11 +66,11 @@ void ConnectToWiFi()
 {
   //WiFiManager
   //Local intialization. Once its business is done, there is no need to keep it around
-  u8g2.clear();          // clear the internal memory
-  u8g2.setCursor(0,20);
-  u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
-  u8g2.print("Running WiFiManager");
-  u8g2.sendBuffer();
+  //u8g2.clear();          // clear the internal memory
+  //u8g2.setCursor(0,20);
+  //u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
+  //u8g2.print("Running WiFiManager");
+  //u8g2.sendBuffer();
   delay(1000);
   WiFiManager wifiManager;
 
@@ -85,23 +85,23 @@ void ConnectToWiFi()
   //if it does not connect it starts an access point with the specified name
   //here  "ESP8266-<uniqueid>" with password "password"
   //and goes into a blocking loop awaiting configuration
-  u8g2.clear();          // clear the internal memory
-  u8g2.setCursor(0,10);
-  u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
-  u8g2.print("Connect to");
-  u8g2.setCursor(0,20);
-  u8g2.print(MyName);
-  u8g2.setCursor(0,30);
-  u8g2.print("to configure WIFI");
-  u8g2.sendBuffer();
+  //u8g2.clear();          // clear the internal memory
+  //u8g2.setCursor(0,10);
+  //u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
+  //u8g2.print("Connect to");
+  //u8g2.setCursor(0,20);
+  //u8g2.print(MyName);
+  //u8g2.setCursor(0,30);
+  //u8g2.print("to configure WIFI");
+  //u8g2.sendBuffer();
   delay(1000);
   if (!wifiManager.autoConnect(MyName.c_str(), "")) {
     Serial.println("failed to connect, we should reset as see if it connects");
-    u8g2.clear();          // clear the internal memory
-    u8g2.setCursor(0,20);
-    u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
-    u8g2.print("failed to connect, we should reset as see if it connects");
-    u8g2.sendBuffer();
+    //u8g2.clear();          // clear the internal memory
+    //u8g2.setCursor(0,20);
+    //u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
+    //u8g2.print("failed to connect, we should reset as see if it connects");
+    //u8g2.sendBuffer();
     delay(3000);
     ESP.reset();
     delay(5000);
@@ -109,35 +109,35 @@ void ConnectToWiFi()
 
   //if you get here you have connected to the WiFi
   Serial.println("connected...yeey :)");
-  u8g2.clear();
-  u8g2.setCursor(0,20);
-  u8g2.print("Connected");
-  u8g2.sendBuffer();
+  //u8g2.clear();
+  //u8g2.setCursor(0,20);
+  //u8g2.print("Connected");
+  //u8g2.sendBuffer();
   delay(1000);
 
   Serial.println("local ip");
   Serial.println(WiFi.localIP());
-  u8g2.setFont(u8g2_font_8x13_tr);
-  u8g2.clear();
-  u8g2.setCursor(0,10);
-  u8g2.print("SSID: ");
-  u8g2.print(WiFi.SSID());
-  u8g2.setCursor(0,20);
-  u8g2.print("Status: ");
-  u8g2.print(WiFi.status());
-  u8g2.setCursor(0,30);
-  u8g2.print("IP: ");
-  u8g2.print(WiFi.localIP());
-  u8g2.sendBuffer();
+  //u8g2.setFont(u8g2_font_8x13_tr);
+  //u8g2.clear();
+  //u8g2.setCursor(0,10);
+  //u8g2.print("SSID: ");
+  //u8g2.print(WiFi.SSID());
+  //u8g2.setCursor(0,20);
+  //u8g2.print("Status: ");
+  //u8g2.print(WiFi.status());
+  //u8g2.setCursor(0,30);
+  //u8g2.print("IP: ");
+  //u8g2.print(WiFi.localIP());
+  //u8g2.sendBuffer();
   delay(1000);
 
 }
 void AdvertiseServices() {
   if (MDNS.begin(MyName.c_str())) {             // Start the mDNS responder for esp8266.local
-    u8g2.clear();
-    u8g2.setCursor(0,10);
-    u8g2.print("MDNS started");
-    u8g2.sendBuffer();
+    //u8g2.clear();
+    //u8g2.setCursor(0,10);
+    //u8g2.print("MDNS started");
+    //u8g2.sendBuffer();
     delay(1000);
 
     MDNS.addService("http", "tcp", 80);
@@ -155,10 +155,10 @@ void AdvertiseServices() {
     while (1)
       {
         Serial.println("Error setting up MDNS responder!");
-        u8g2.clear();
-        u8g2.setCursor(0,10);
-        u8g2.print("MDNS error");
-        u8g2.sendBuffer();
+        //u8g2.clear();
+        //u8g2.setCursor(0,10);
+        //u8g2.print("MDNS error");
+        //u8g2.sendBuffer();
         delay(1000);
       }
   }
@@ -182,11 +182,11 @@ void setup() {
   ESP.deepSleep(PMS_READ_INTERVAL * 1000);
 #endif // DEEP_SLEEP
 
-  u8g2.begin();
-  u8g2.setFont(u8g2_font_ncenB14_tr);
-  u8g2.setCursor(0,20);
-  u8g2.print("AQI Sensor");
-  u8g2.sendBuffer();
+  //u8g2.begin();
+  //u8g2.setFont(u8g2_font_ncenB14_tr);
+  //u8g2.setCursor(0,20);
+  //u8g2.print("AQI Sensor");
+  //u8g2.sendBuffer();
   delay(1000);
 
   ConnectToWiFi();
@@ -196,10 +196,10 @@ void setup() {
 
   server.begin();                           // Actually start the server
   Serial.println("HTTP server started");
-  u8g2.clear();
-  u8g2.setCursor(0,10);
-  u8g2.print("HTTP started");
-  u8g2.sendBuffer();
+  //u8g2.clear();
+  //u8g2.setCursor(0,10);
+  //u8g2.print("HTTP started");
+  //u8g2.sendBuffer();
   delay(1000);
 
   AdvertiseServices();
@@ -215,17 +215,17 @@ void readData()
   while (Serial.available()) { Serial.read(); }
 
   //DEBUG_OUT.println("Send read request...");
-  u8g2.clear();
-  u8g2.setCursor(0,10);
-  u8g2.print("Send read request.");
-  u8g2.sendBuffer();
+  //u8g2.clear();
+  //u8g2.setCursor(0,10);
+  //u8g2.print("Send read request.");
+  //u8g2.sendBuffer();
   pms.requestRead();
 
   //DEBUG_OUT.println("Reading data...");
-  u8g2.clear();
-  u8g2.setCursor(0,10);
-  u8g2.print("Reading data.");
-  u8g2.sendBuffer();
+  //u8g2.clear();
+  //u8g2.setCursor(0,10);
+  //u8g2.print("Reading data.");
+  //u8g2.sendBuffer();
   if (pms.readUntil(data))
   {
     /*DEBUG_OUT.println();
@@ -237,17 +237,17 @@ void readData()
     DEBUG_OUT.println(data.PM_AE_UG_10_0);
     DEBUG_OUT.println();*/
 
-    u8g2.clear();
-    u8g2.setCursor(0,10);
-    u8g2.print("PM1.0(ug/m3): ");
-    u8g2.print(data.PM_AE_UG_1_0);
-    u8g2.setCursor(0,20);
-    u8g2.print("PM2.5(ug/m3): ");
-    u8g2.print(data.PM_AE_UG_2_5);
-    u8g2.setCursor(0,30);
-    u8g2.print("PM10(ug/m3): ");
-    u8g2.print(data.PM_AE_UG_10_0);
-    u8g2.sendBuffer();
+    //u8g2.clear();
+    //u8g2.setCursor(0,10);
+    //u8g2.print("PM1.0(ug/m3): ");
+    //u8g2.print(data.PM_AE_UG_1_0);
+    //u8g2.setCursor(0,20);
+    //u8g2.print("PM2.5(ug/m3): ");
+    //u8g2.print(data.PM_AE_UG_2_5);
+    //u8g2.setCursor(0,30);
+    //u8g2.print("PM10(ug/m3): ");
+    //u8g2.print(data.PM_AE_UG_10_0);
+    //u8g2.sendBuffer();
     PM_AE_UG_1_0 = data.PM_AE_UG_1_0;
     PM_AE_UG_2_5 = data.PM_AE_UG_2_5;
     PM_AE_UG_10_0 = data.PM_AE_UG_10_0;
@@ -256,10 +256,10 @@ void readData()
   else
   {
     //DEBUG_OUT.println("No data.");
-    u8g2.clear();
-    u8g2.setCursor(0,10);
-    u8g2.print("No data.");
-    u8g2.sendBuffer();
+    //u8g2.clear();
+    //u8g2.setCursor(0,10);
+    //u8g2.print("No data.");
+    //u8g2.sendBuffer();
   }
 }
 #ifndef DEEP_SLEEP
@@ -277,10 +277,10 @@ void timerCallback() {
   else
   {
     //DEBUG_OUT.println("Waking up.");
-    u8g2.clear();
-    u8g2.setCursor(0,10);
-    u8g2.print("Waking up.");
-    u8g2.sendBuffer();
+    //u8g2.clear();
+    //u8g2.setCursor(0,10);
+    //u8g2.print("Waking up.");
+    //u8g2.sendBuffer();
     pms.wakeUp();
   }
 }
